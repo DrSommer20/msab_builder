@@ -1,0 +1,79 @@
+dictionary = 
+{
+	["DictKey_ActionRadioText_62"] = "Add Sixpack",
+	["DictKey_ActionRadioText_49"] = "",
+	["DictKey_ActionText_13"] = "Arco on North Station in 10 mikes!",
+	["DictKey_ActionRadioText_51"] = "",
+	["DictKey_ActionRadioText_9"] = "Texaco TEX North",
+	["DictKey_sortie_5"] = "",
+	["DictKey_ActionRadioText_41"] = "",
+	["DictKey_descriptionRedTask_2"] = "",
+	["DictKey_ActionRadioText_25"] = "Clear Deck for Landing",
+	["DictKey_ActionRadioText_37"] = "Clear Deck for Landing",
+	["DictKey_ActionRadioText_64"] = "Add All Statics on Deck",
+	["DictKey_ActionRadioText_6"] = "Shell SHL South",
+	["DictKey_ActionRadioText_7"] = "Texaco TXO South",
+	["DictKey_ActionRadioText_8"] = "Arco ARC North",
+	["DictKey_descriptionText_1"] = "",
+	["DictKey_descriptionBlueTask_3"] = "AircraftCarrier:\
+CVN 73: \
+              TCN: 73x\
+              ICLS: 13\
+              Freq: 250.000 MHz\
+Tanker:\
+\
+Recovery Tanker\
+              Navy One  \"NYO\"\
+              Typ: S3B Viking\
+              TCN:27Y\
+              Freq: 263.500 MHz\
+              Orbit: 6000\
+\
+MSAB Tanker Race Track South\
+              Shell   \"SHL\"\
+              Typ: KC130\
+              TCN:30Y\
+              Freq: 274.000 MHz\
+              Orbit: 20000\
+\
+MSAB Tanker Race Track South\
+              Texaco   \"TXO\"\
+              Typ: KC135\
+              TCN:36Y\
+              Freq: 276.000 MHz\
+              Orbit: 26000\
+\
+Incerlik Tanker Race Track North\
+              Texaco   \"TEX\"\
+              Typ: KC135\
+              TCN:35Y\
+              Freq: 272.000 MHz\
+              Orbit: 25000\
+\
+Incerlik Tanker Race Track North\
+              ARCO   \"ARC\"\
+              Typ: KC135MPRS\
+              TCN:13Y\
+              Freq: 269.000 MHz\
+              Orbit: 23000\
+              \
+Awacs:    \
+              Wizard\
+              Freq: 256.000 MHz        \
+\
+Airfields:\
+MSAB:\
+              TCN: 85x\
+              ILS:   109.70",
+	["DictKey_ActionRadioText_43"] = "",
+	["DictKey_ActionText_14"] = "Texaco TEX on North Station in 10 mikes!",
+	["DictKey_ActionRadioText_42"] = "Clear Deck for Recovery",
+	["DictKey_ActionText_11"] = "SHELL on South Station in 22 mikes!",
+	["DictKey_descriptionNeutralsTask_4"] = "",
+	["DictKey_ActionRadioText_60"] = "Clear Sixpack",
+	["DictKey_ActionRadioText_63"] = "Add Fantail",
+	["DictKey_ActionRadioText_61"] = "Clear All Statics on Deck",
+	["DictKey_ActionRadioText_59"] = "Clear Fantail",
+	["DictKey_ActionRadioText_46"] = "",
+	["DictKey_ActionText_12"] = "Texaco TXO on South Station in  20 mikes!",
+} -- end of dictionary
