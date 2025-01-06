@@ -1,25 +1,22 @@
 package de.sommer.msab_builder.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.awt.Image;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
+import de.sommer.msab_builder.util.CustomJButton;
+
 public class MissionPlanningPanel extends JPanel {
+
+    private ConfiguratorTabbedPane tabbedPane;
 
     public MissionPlanningPanel() {
         // Set the panel layout
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10));
-
-        
-        
 
         JLabel headerLabel = new JLabel("DCS - MSAB Mission Builder");
         headerLabel.setFont(headerLabel.getFont().deriveFont(24.0f));
@@ -29,7 +26,7 @@ public class MissionPlanningPanel extends JPanel {
         JPanel buttonPanel = new JPanel(new BorderLayout());
 
         // Reset Button
-        JButton resetButton = new JButton("Reset");
+        CustomJButton resetButton = new CustomJButton("Reset", CustomJButton.TYPE_DANGER);
         buttonPanel.add(resetButton, BorderLayout.WEST);
 
         // Spacer
@@ -37,17 +34,31 @@ public class MissionPlanningPanel extends JPanel {
         buttonPanel.add(spacer, BorderLayout.CENTER);
 
         // Save Button
-        JButton saveButton = new JButton("Save");
+        CustomJButton saveButton = new CustomJButton("Save", CustomJButton.TYPE_SUBMIT);
+        saveButton.addActionListener(e -> displaySaveInformation());
         buttonPanel.add(saveButton, BorderLayout.EAST);
 
         // Add button panel to the south
         add(buttonPanel, BorderLayout.SOUTH);
 
 
-        JTabbedPane tabbedPane = new ConfiguratorTabbedPane();
+        tabbedPane = new ConfiguratorTabbedPane();
         add(tabbedPane, BorderLayout.CENTER);
+    }
 
+    private void displaySaveInformation() {
+        // Gather information from the tabbed pane
+        StringBuilder info = new StringBuilder();
+        info.append("Mission Planning Information:\n");
 
+        // Assuming ContextPanel and FlightGroupsPanel have methods to get their information
+        ContextPanel contextPanel = (ContextPanel) tabbedPane.getComponentAt(0);
+        FlightGroupsTabPanel flightGroupsPanel = (FlightGroupsTabPanel) tabbedPane.getComponentAt(1);
 
+        info.append(contextPanel.getInformation());
+        //info.append(flightGroupsPanel.getInformation());
+
+        // Display the information in a popup window
+        JOptionPane.showMessageDialog(this, info.toString(), "Save Information", JOptionPane.INFORMATION_MESSAGE);
     }
 }

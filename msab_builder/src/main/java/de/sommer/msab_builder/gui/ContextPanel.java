@@ -1,5 +1,6 @@
 package de.sommer.msab_builder.gui;
 
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,6 +20,16 @@ import de.sommer.msab_builder.db.SQLDB;
 import de.sommer.msab_builder.util.ComboItem;
 
 public class ContextPanel extends JPanel {
+
+    private JTextField missionName;
+    private JComboBox<String> theater;
+    private JComboBox<String> time;
+    private JComboBox<String> season;
+    private JComboBox<ComboItem> weather;
+    private JComboBox<ComboItem> wind;
+    private JComboBox<ComboItem> missionType;
+    private JComboBox<ComboItem> timePeriod;
+    private JPanel miscPanel;
     
     public ContextPanel() {
         super();
@@ -44,7 +55,7 @@ public class ContextPanel extends JPanel {
 
 
         JLabel missionNameLabel = new JLabel("Mission Name:");
-        JTextField missionName = new JTextField();
+        missionName = new JTextField();
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -54,7 +65,7 @@ public class ContextPanel extends JPanel {
         add(missionName, gbc);
 
         JLabel theaterLabel = new JLabel("Theater:");
-        JComboBox<String> theater = new JComboBox<>(new String[] {"Syria", "Caucasus", "Nevada", "Persian Gulf"});
+        theater = new JComboBox<>(new String[] {"Syria", "Caucasus", "Nevada", "Persian Gulf"});
         gbc.gridx = 2;
         gbc.gridy = 1;
         add(theaterLabel, gbc);
@@ -64,7 +75,7 @@ public class ContextPanel extends JPanel {
         theater.setEnabled(false);
 
         JLabel timeLabel = new JLabel("Time:");
-        JComboBox<String> time = new JComboBox<>(new String[] {"Morning", "Day", "Evening", "Night"});
+        time = new JComboBox<>(new String[] {"Morning", "Day", "Evening", "Night"});
         gbc.gridx = 3;
         gbc.gridy = 1;
         add(timeLabel, gbc);
@@ -80,7 +91,7 @@ public class ContextPanel extends JPanel {
 
 
         JLabel seasonLabel = new JLabel("Season:");
-        JComboBox<String> season = new JComboBox<>(new String[] {"Winter", "Spring", "Summer", "Autumn"});
+        season = new JComboBox<>(new String[] {"Winter", "Spring", "Summer", "Autumn"});
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridwidth = 1;
@@ -90,7 +101,7 @@ public class ContextPanel extends JPanel {
 
 
         JLabel weatherLabel = new JLabel("Weather:");
-        JComboBox<ComboItem> weather = new JComboBox<>();
+        weather = new JComboBox<>();
         for (ComboItem w : SQLDB.getWeather()) {
             weather.addItem(w);
         }
@@ -101,7 +112,7 @@ public class ContextPanel extends JPanel {
         add(weather, gbc); 
 
         JLabel windLabel = new JLabel("Wind:");
-        JComboBox<ComboItem> wind = new JComboBox<>();
+        wind = new JComboBox<>();
         for (ComboItem w : SQLDB.getWind()) {
             wind.addItem(w);
         }
@@ -118,7 +129,7 @@ public class ContextPanel extends JPanel {
         add(sep2, gbc);
 
         JLabel missionTypeLabel = new JLabel("Mission Type:");
-        JComboBox<ComboItem> missionType = new JComboBox<>();
+        missionType = new JComboBox<>();
         for (ComboItem w : SQLDB.getMissionTypes()) {
             missionType.addItem(w);
         }
@@ -130,7 +141,7 @@ public class ContextPanel extends JPanel {
         add(missionType, gbc);
 
         JLabel timePeriodLabel = new JLabel("Time Period:");
-        JComboBox<ComboItem> timePeriod = new JComboBox<>();
+        timePeriod = new JComboBox<>();
         for (ComboItem w : SQLDB.getTimePeriods()) {
             timePeriod.addItem(w);
         }
@@ -140,16 +151,11 @@ public class ContextPanel extends JPanel {
         gbc.gridy = 9;
         add(timePeriod, gbc);
 
-        // Add MISC Panel
-        JPanel miscPanel = createMiscPanel();
+        miscPanel = createMiscPanel();
         gbc.gridx = 0;
         gbc.gridy = 10;
         gbc.gridwidth = 5;
         add(miscPanel, gbc);
-
-        
-
-        
     }
 
     private JPanel createMiscPanel() {
@@ -166,6 +172,33 @@ public class ContextPanel extends JPanel {
         }
 
         return miscPanel;
+    }
+
+    public String getInformation() {
+        StringBuilder info = new StringBuilder();
+        info.append("Context Information:\n");
+
+        info.append("Mission Name: ").append(missionName.getText()).append("\n");
+        info.append("Theater: ").append(theater.getSelectedItem().toString()).append("\n");
+        info.append("Time: ").append(time.getSelectedItem().toString()).append("\n");
+        info.append("Season: ").append(season.getSelectedItem().toString()).append("\n");
+        info.append("Mission Type: ").append(missionType.getSelectedItem().toString()).append("\n");
+        info.append("Time Period: ").append(timePeriod.getSelectedItem().toString()).append("\n");
+        info.append("Weather: ").append(weather.getSelectedItem().toString()).append("\n");
+        info.append("Wind: ").append(wind.getSelectedItem().toString()).append("\n");
+
+        info.append("Misc Items:\n");
+        for (Component comp : miscPanel.getComponents()) {
+            if (comp instanceof JRadioButton) {
+                JRadioButton checkBox = (JRadioButton) comp;
+                if (checkBox.isSelected()) {
+                    info.append(checkBox.getText()).append("\n");
+                }
+            }
+        }
+
+
+        return info.toString();
     }
     
 }
