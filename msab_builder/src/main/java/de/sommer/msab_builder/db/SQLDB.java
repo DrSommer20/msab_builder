@@ -1,6 +1,5 @@
 package de.sommer.msab_builder.db;
 
-import java.awt.datatransfer.StringSelection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;

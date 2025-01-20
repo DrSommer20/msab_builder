@@ -150,12 +150,12 @@ public class LoadoutPanel extends JPanel {
         List<Integer> pylonNames = SQLDB.getPylonNames(aircraftId);
         int half = (int) Math.ceil(pylonNames.size() / 2.0);
         int count = 0;
+        int initialGbcY = gbc.gridy; // Store the initial gbc.gridy value
         gbc.gridy++;
 
         for (Integer pylon : pylonNames) {
-            JLabel pylonLabel = new JLabel("Pylon " + pylon +":");
+            JLabel pylonLabel = new JLabel("Pylon " + pylon + ":");
             gbc.gridx = count < half ? 0 : 2;
-            gbc.gridy = count < half ? gbc.gridy : gbc.gridy - half;
             gbc.anchor = GridBagConstraints.WEST;
             add(pylonLabel, gbc);
 
@@ -171,19 +171,29 @@ public class LoadoutPanel extends JPanel {
                 maxWidth = preferredSize.width;
             }
 
-            comboBoxes.add(weaponComboBox);
+            
             gbc.gridy++;
             add(weaponComboBox, gbc);
+            comboBoxes.add(weaponComboBox);
             gbc.gridy++;
             count++;
+            if(count == half) {
+                gbc.gridy = initialGbcY +1;    
+            }
+            
         }
 
         // Set the preferred width of all comboboxes to the maximum width found
         for (JComboBox<ComboItem> comboBox : comboBoxes) {
-            Dimension preferredSize = comboBox.getPreferredSize();
-            preferredSize.width = maxWidth;
-            comboBox.setPreferredSize(preferredSize);
+            comboBox.setPreferredSize(new Dimension(maxWidth, comboBox.getPreferredSize().height));
         }
+
+        // // Set the preferred width of all comboboxes to the maximum width found
+        // for (JComboBox<ComboItem> comboBox : comboBoxes) {
+        //     Dimension preferredSize = comboBox.getPreferredSize();
+        //     preferredSize.width = maxWidth;
+        //     comboBox.setPreferredSize(preferredSize);
+        // }
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> dialog.dispose());

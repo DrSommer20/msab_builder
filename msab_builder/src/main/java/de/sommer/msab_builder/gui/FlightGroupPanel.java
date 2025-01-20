@@ -21,10 +21,10 @@ import de.sommer.msab_builder.util.CustomJButton;
 
 public class FlightGroupPanel extends JPanel {
 
-    private JComboBox<ComboItem> airportComboBox;
-    private JComboBox<ComboItem> parkingSlotsComboBox;
-    private JComboBox<ComboItem> aircraftTypeComboBox;
-    private JComboBox<ComboItem> aircraftComboBox;
+    private JComboBox<ComboItem> airportComboBox = new JComboBox<>();
+    private JComboBox<ComboItem> parkingSlotsComboBox = new JComboBox<>();
+    private JComboBox<ComboItem> aircraftTypeComboBox = new JComboBox<>();
+    private JComboBox<ComboItem> aircraftComboBox = new JComboBox<>();
     private JSpinner countSpinner;
     private FlightGroupsTabPanel parent;
     private JPanel slotsPanel;
@@ -60,7 +60,6 @@ public class FlightGroupPanel extends JPanel {
 
         // Aircraft Type
         JLabel aircraftTypeLabel = new JLabel("Aircraft Type:");
-        aircraftTypeComboBox = new JComboBox<>();
         aircraftTypeComboBox.addItem(new ComboItem("Plane", "Plane"));
         aircraftTypeComboBox.addItem(new ComboItem("Helicopter", "Helicopter"));
         gbc.gridx = 2;
@@ -246,8 +245,14 @@ public class FlightGroupPanel extends JPanel {
     }
     // Method to get parking spots
     private ComboItem[] getParkingSpots(String airport_id) {
-        ComboItem[] parkingSpots = SQLDB.getParkingSlots(airport_id, ((ComboItem)aircraftTypeComboBox.getSelectedItem()).getKey(), ((ComboItem)aircraftComboBox.getSelectedItem()).getKey()).toArray(new ComboItem[0]);
-        System.out.println(parkingSpots.length);
+        ComboItem selectedAircraftType = (ComboItem) aircraftTypeComboBox.getSelectedItem();
+        ComboItem selectedAircraft = (ComboItem) aircraftComboBox.getSelectedItem();
+    
+        if (selectedAircraftType == null || selectedAircraft == null) {
+            return new ComboItem[0]; // Return an empty array if either selection is null
+        }
+    
+        ComboItem[] parkingSpots = SQLDB.getParkingSlots(airport_id, selectedAircraftType.getKey(), selectedAircraft.getKey()).toArray(new ComboItem[0]);
         return parkingSpots;
     }
 

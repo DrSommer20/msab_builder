@@ -2,11 +2,11 @@ import re
 import psycopg2
 
 # Database connection details
-DB_HOST = "192.168.2.121"
+DB_HOST = "212.227.161.227"
 DB_PORT = "5588"
 DB_NAME = "msab_builder"
-DB_USER = "admin"
-DB_PASS = "admin"
+DB_USER = "msab_app"
+DB_PASS = "tYP7McmIo0ecgozgpVI7V8SFwMdQvM3tfWQ3hP4EHTObfA1ZEjItKdfCaF4F"
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
@@ -36,7 +36,7 @@ def insert_weapon(clsid, name, weight):
     """, (clsid, name, weight))
 
 # Extract weapon information from the weapons_data.py file
-with open('c:/Users/timmi/Documents/Github/msab_builder/pyToDB/dcs/weapons_data.py', 'r') as file:
+with open('c:/Users/Tim/Documents/GitHub/msab_builder/todb/weapon_data.py', 'r') as file:
     content = file.read()
 
 # Regular expression to match weapon data

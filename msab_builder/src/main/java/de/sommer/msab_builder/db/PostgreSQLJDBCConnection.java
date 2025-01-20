@@ -5,16 +5,19 @@ import java.sql.SQLException;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 class PostgreSQLJDBCConnection {
 
-    private static BasicDataSource ds = new BasicDataSource();
+     private static BasicDataSource ds = new BasicDataSource();
+    private static Dotenv dotenv = Dotenv.load();
     
     // Database URL
-    private static final String DB_URL = "jdbc:postgresql://192.168.2.121:5588/msab_builder";
+    private static final String DB_URL = dotenv.get("DB_URL");
     
     // Database credentials
-    private static final String USER = "admin";
-    private static final String PASS = "admin";
+    private static final String USER = dotenv.get("DB_USER");
+    private static final String PASS = dotenv.get("DB_PASS");
 
     static {
         ds.setUrl(DB_URL);
