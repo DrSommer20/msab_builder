@@ -27,6 +27,36 @@ public class Mission {
     public PictureFileName pictureFileNameB;
     public Coalition coalition;
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\"mission\" = \n{\n");
+        sb.append(groundControl.toString());
+        sb.append(requiredModules.toString());
+        sb.append(date.toString());
+        sb.append(trig.toString());
+        sb.append("\t[\"maxDictId\"] = ").append(maxDictId).append(",\n");
+        sb.append(result.toString());
+        sb.append("\t[\"pictureFileNameN\"] = {},\n");
+        sb.append(drawings.toString());
+        sb.append("\t[\"descriptionNeutralsTask\"] = \"").append(descriptionNeutralsTask).append("\",\n");
+        sb.append("\t[\"pictureFileNameServer\"] = {},\n");
+        sb.append(weather.toString());
+        sb.append("\t[\"theatre\"] = \"").append(theatre).append("\",\n");
+        sb.append(triggers.toString());
+        sb.append(map.toString());
+        sb.append(coalitions.toString());
+        sb.append("\t[\"descriptionText\"] = \"").append(descriptionText).append("\",\n");
+        sb.append("\t[\"pictureFileNameR\"] = {},\n");
+        sb.append("\t[\"descriptionBlueTask\"] = \"").append(descriptionBlueTask).append("\",\n");
+        sb.append(goals.toString());
+        sb.append("\t[\"descriptionRedTask\"] = \"").append(descriptionRedTask).append("\",\n");
+        sb.append("\t[\"pictureFileNameB\"] = {},\n");
+        sb.append(coalition.toString());
+        sb.append("}, -- end of [\"mission\"]\n");
+        return sb.toString();
+    }
+
     public static class GroundControl {
         private Passwords passwords;
         private Roles roles;
@@ -54,6 +84,17 @@ public class Mission {
 
         public void setPilotControlVehicles(boolean isPilotControlVehicles) {
             this.isPilotControlVehicles = isPilotControlVehicles;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"groundControl\"] = \n\t{\n");
+            sb.append(passwords.toString());
+            sb.append(roles.toString());
+            sb.append("\t\t[\"isPilotControlVehicles\"] = ").append(isPilotControlVehicles).append(",\n");
+            sb.append("\t}, -- end of [\"groundControl\"]\n");
+            return sb.toString();
         }
     }
 
@@ -94,6 +135,18 @@ public class Mission {
         public void setForward_observer(List<String> forward_observer) {
             this.forward_observer = forward_observer;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"passwords\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"artillery_commander\"] = {},\n");
+            sb.append("\t\t\t[\"instructor\"] = {},\n");
+            sb.append("\t\t\t[\"observer\"] = {},\n");
+            sb.append("\t\t\t[\"forward_observer\"] = {},\n");
+            sb.append("\t\t}, -- end of [\"passwords\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Roles {
@@ -132,6 +185,34 @@ public class Mission {
 
         public void setForward_observer(Role forward_observer) {
             this.forward_observer = forward_observer;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"roles\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"artillery_commander\"] = \n\t\t\t{\n");
+            sb.append("\t\t\t\t[\"neutrals\"] = ").append(artillery_commander.getNeutrals()).append(",\n");
+            sb.append("\t\t\t\t[\"blue\"] = ").append(artillery_commander.getBlue()).append(",\n");
+            sb.append("\t\t\t\t[\"red\"] = ").append(artillery_commander.getRed()).append(",\n");
+            sb.append("\t\t\t}, -- end of [\"artillery_commander\"]\n");
+            sb.append("\t\t\t[\"instructor\"] = \n\t\t\t{\n");
+            sb.append("\t\t\t\t[\"neutrals\"] = ").append(instructor.getNeutrals()).append(",\n");
+            sb.append("\t\t\t\t[\"blue\"] = ").append(instructor.getBlue()).append(",\n");
+            sb.append("\t\t\t\t[\"red\"] = ").append(instructor.getRed()).append(",\n");
+            sb.append("\t\t\t}, -- end of [\"instructor\"]\n");
+            sb.append("\t\t\t[\"observer\"] = \n\t\t\t{\n");
+            sb.append("\t\t\t\t[\"neutrals\"] = ").append(observer.getNeutrals()).append(",\n");
+            sb.append("\t\t\t\t[\"blue\"] = ").append(observer.getBlue()).append(",\n");
+            sb.append("\t\t\t\t[\"red\"] = ").append(observer.getRed()).append(",\n");
+            sb.append("\t\t\t}, -- end of [\"observer\"]\n");
+            sb.append("\t\t\t[\"forward_observer\"] = \n\t\t\t{\n");
+            sb.append("\t\t\t\t[\"neutrals\"] = ").append(forward_observer.getNeutrals()).append(",\n");
+            sb.append("\t\t\t\t[\"blue\"] = ").append(forward_observer.getBlue()).append(",\n");
+            sb.append("\t\t\t\t[\"red\"] = ").append(forward_observer.getRed()).append(",\n");
+            sb.append("\t\t\t}, -- end of [\"forward_observer\"]\n");
+            sb.append("\t\t}, -- end of [\"roles\"]\n");
+            return sb.toString();
         }
     }
 
@@ -184,6 +265,16 @@ public class Mission {
         public void setUH_60L(String UH_60L) {
             this.UH_60L = UH_60L;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"requiredModules\"] = \n\t{\n");
+            sb.append("\t\t[\"Massun92-Humans\"] = \"").append(Massun92_Humans).append("\",\n");
+            sb.append("\t\t[\"UH-60L\"] = \"").append(UH_60L).append("\",\n");
+            sb.append("\t}, -- end of [\"requiredModules\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Date {
@@ -213,6 +304,17 @@ public class Mission {
 
         public void setMonth(int month) {
             Month = month;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"date\"] = \n\t{\n");
+            sb.append("\t\t[\"Day\"] = ").append(Day).append(",\n");
+            sb.append("\t\t[\"Year\"] = ").append(Year).append(",\n");
+            sb.append("\t\t[\"Month\"] = ").append(Month).append(",\n");
+            sb.append("\t}, -- end of [\"date\"]\n");
+            return sb.toString();
         }
     }
 
@@ -289,6 +391,42 @@ public class Mission {
         public void setFuncStartup(List<String> funcStartup) {
             this.funcStartup = funcStartup;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"trig\"] = \n\t{\n");
+            sb.append("\t\t[\"actions\"] = \n\t\t{\n");
+            for (int i = 0; i < actions.size(); i++) {
+                sb.append("\t\t\t[").append(i + 1).append("] = \"").append(actions.get(i)).append("\",\n");
+            }
+            sb.append("\t\t}, -- end of [\"actions\"]\n");
+            sb.append("\t\t[\"events\"] = {},\n");
+            sb.append("\t\t[\"custom\"] = {},\n");
+            sb.append("\t\t[\"func\"] = \n\t\t{\n");
+            for (int i = 0; i < func.size(); i++) {
+                sb.append("\t\t\t[").append(i + 1).append("] = \"").append(func.get(i)).append("\",\n");
+            }
+            sb.append("\t\t}, -- end of [\"func\"]\n");
+            sb.append("\t\t[\"flag\"] = \n\t\t{\n");
+            for (int i = 0; i < flag.size(); i++) {
+                sb.append("\t\t\t[").append(i + 1).append("] = ").append(flag.get(i)).append(",\n");
+            }
+            sb.append("\t\t}, -- end of [\"flag\"]\n");
+            sb.append("\t\t[\"conditions\"] = \n\t\t{\n");
+            for (int i = 0; i < conditions.size(); i++) {
+                sb.append("\t\t\t[").append(i + 1).append("] = \"").append(conditions.get(i)).append("\",\n");
+            }
+            sb.append("\t\t}, -- end of [\"conditions\"]\n");
+            sb.append("\t\t[\"customStartup\"] = {},\n");
+            sb.append("\t\t[\"funcStartup\"] = \n\t\t{\n");
+            for (int i = 0; i < funcStartup.size(); i++) {
+                sb.append("\t\t\t[").append(i + 1).append("] = \"").append(funcStartup.get(i)).append("\",\n");
+            }
+            sb.append("\t\t}, -- end of [\"funcStartup\"]\n");
+            sb.append("\t}, -- end of [\"trig\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Result {
@@ -328,6 +466,18 @@ public class Mission {
         public void setRed(Red red) {
             this.red = red;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"result\"] = \n\t{\n");
+            sb.append(offline.toString());
+            sb.append("\t\t[\"total\"] = ").append(total).append(",\n");
+            sb.append(blue.toString());
+            sb.append(red.toString());
+            sb.append("\t}, -- end of [\"result\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Offline {
@@ -357,6 +507,17 @@ public class Mission {
 
         public void setFunc(List<String> func) {
             this.func = func;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"offline\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"conditions\"] = {},\n");
+            sb.append("\t\t\t[\"actions\"] = {},\n");
+            sb.append("\t\t\t[\"func\"] = {},\n");
+            sb.append("\t\t}, -- end of [\"offline\"]\n");
+            return sb.toString();
         }
     }
 
@@ -388,6 +549,17 @@ public class Mission {
         public void setFunc(List<String> func) {
             this.func = func;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"blue\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"conditions\"] = {},\n");
+            sb.append("\t\t\t[\"actions\"] = {},\n");
+            sb.append("\t\t\t[\"func\"] = {},\n");
+            sb.append("\t\t}, -- end of [\"blue\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Red {
@@ -417,6 +589,17 @@ public class Mission {
 
         public void setFunc(List<String> func) {
             this.func = func;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"red\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"conditions\"] = {},\n");
+            sb.append("\t\t\t[\"actions\"] = {},\n");
+            sb.append("\t\t\t[\"func\"] = {},\n");
+            sb.append("\t\t}, -- end of [\"red\"]\n");
+            return sb.toString();
         }
     }
 
@@ -451,6 +634,22 @@ public class Mission {
         public void setLayers(List<Layer> layers) {
             this.layers = layers;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"drawings\"] = \n\t{\n");
+            sb.append(options.toString());
+            sb.append("\t\t[\"layers\"] = \n\t\t{\n");
+            for (int i = 0; i < layers.size(); i++) {
+                sb.append("\t\t\t[").append(i + 1).append("] = \n\t\t\t{\n");
+                sb.append(layers.get(i).toString());
+                sb.append("\t\t\t}, -- end of [").append(i + 1).append("]\n");
+            }
+            sb.append("\t\t}, -- end of [\"layers\"]\n");
+            sb.append("\t}, -- end of [\"drawings\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Options {
@@ -462,6 +661,15 @@ public class Mission {
 
         public void setHiddenOnF10Map(HiddenOnF10Map hiddenOnF10Map) {
             this.hiddenOnF10Map = hiddenOnF10Map;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"options\"] = \n\t\t{\n");
+            sb.append(hiddenOnF10Map.toString());
+            sb.append("\t\t}, -- end of [\"options\"]\n");
+            return sb.toString();
         }
     }
 
@@ -520,6 +728,20 @@ public class Mission {
         public void setPilot(Pilot pilot) {
             Pilot = pilot;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t[\"hiddenOnF10Map\"] = \n\t\t\t{\n");
+            sb.append(Observer.toString());
+            sb.append(Instructor.toString());
+            sb.append(ForwardObserver.toString());
+            sb.append(ArtilleryCommander.toString());
+            sb.append(Spectrator.toString());
+            sb.append(Pilot.toString());
+            sb.append("\t\t\t}, -- end of [\"hiddenOnF10Map\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Observer {
@@ -549,6 +771,17 @@ public class Mission {
 
         public void setRed(boolean red) {
             Red = red;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"Observer\"] = \n\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t[\"Neutral\"] = ").append(Neutral).append(",\n");
+            sb.append("\t\t\t\t\t[\"Blue\"] = ").append(Blue).append(",\n");
+            sb.append("\t\t\t\t\t[\"Red\"] = ").append(Red).append(",\n");
+            sb.append("\t\t\t\t}, -- end of [\"Observer\"]\n");
+            return sb.toString();
         }
     }
 
@@ -580,6 +813,17 @@ public class Mission {
         public void setRed(boolean red) {
             Red = red;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"Instructor\"] = \n\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t[\"Neutral\"] = ").append(Neutral).append(",\n");
+            sb.append("\t\t\t\t\t[\"Blue\"] = ").append(Blue).append(",\n");
+            sb.append("\t\t\t\t\t[\"Red\"] = ").append(Red).append(",\n");
+            sb.append("\t\t\t\t}, -- end of [\"Instructor\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class ForwardObserver {
@@ -609,6 +853,17 @@ public class Mission {
 
         public void setRed(boolean red) {
             Red = red;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"ForwardObserver\"] = \n\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t[\"Neutral\"] = ").append(Neutral).append(",\n");
+            sb.append("\t\t\t\t\t[\"Blue\"] = ").append(Blue).append(",\n");
+            sb.append("\t\t\t\t\t[\"Red\"] = ").append(Red).append(",\n");
+            sb.append("\t\t\t\t}, -- end of [\"ForwardObserver\"]\n");
+            return sb.toString();
         }
     }
 
@@ -640,6 +895,17 @@ public class Mission {
         public void setRed(boolean red) {
             Red = red;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"ArtilleryCommander\"] = \n\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t[\"Neutral\"] = ").append(Neutral).append(",\n");
+            sb.append("\t\t\t\t\t[\"Blue\"] = ").append(Blue).append(",\n");
+            sb.append("\t\t\t\t\t[\"Red\"] = ").append(Red).append(",\n");
+            sb.append("\t\t\t\t}, -- end of [\"ArtilleryCommander\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Spectrator {
@@ -669,6 +935,17 @@ public class Mission {
 
         public void setRed(boolean red) {
             Red = red;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"Spectrator\"] = \n\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t[\"Neutral\"] = ").append(Neutral).append(",\n");
+            sb.append("\t\t\t\t\t[\"Blue\"] = ").append(Blue).append(",\n");
+            sb.append("\t\t\t\t\t[\"Red\"] = ").append(Red).append(",\n");
+            sb.append("\t\t\t\t}, -- end of [\"Spectrator\"]\n");
+            return sb.toString();
         }
     }
 
@@ -700,6 +977,17 @@ public class Mission {
         public void setRed(boolean red) {
             Red = red;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"Pilot\"] = \n\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t[\"Neutral\"] = ").append(Neutral).append(",\n");
+            sb.append("\t\t\t\t\t[\"Blue\"] = ").append(Blue).append(",\n");
+            sb.append("\t\t\t\t\t[\"Red\"] = ").append(Red).append(",\n");
+            sb.append("\t\t\t\t}, -- end of [\"Pilot\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Layer {
@@ -729,6 +1017,15 @@ public class Mission {
 
         public void setObjects(List<Object> objects) {
             this.objects = objects;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"visible\"] = ").append(visible).append(",\n");
+            sb.append("\t\t\t\t[\"name\"] = \"").append(name).append("\",\n");
+            sb.append("\t\t\t\t[\"objects\"] = {},\n");
+            return sb.toString();
         }
     }
 
@@ -886,6 +1183,31 @@ public class Mission {
         public void setVisibility(Visibility visibility) {
             this.visibility = visibility;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"weather\"] = \n\t{\n");
+            sb.append(wind.toString());
+            sb.append("\t\t[\"enable_fog\"] = ").append(enable_fog).append(",\n");
+            sb.append(season.toString());
+            sb.append("\t\t[\"qnh\"] = ").append(qnh).append(",\n");
+            sb.append("\t\t[\"cyclones\"] = {},\n");
+            sb.append("\t\t[\"dust_density\"] = ").append(dust_density).append(",\n");
+            sb.append("\t\t[\"enable_dust\"] = ").append(enable_dust).append(",\n");
+            sb.append(clouds.toString());
+            sb.append("\t\t[\"atmosphere_type\"] = ").append(atmosphere_type).append(",\n");
+            sb.append("\t\t[\"groundTurbulence\"] = ").append(groundTurbulence).append(",\n");
+            sb.append(halo.toString());
+            sb.append("\t\t[\"type_weather\"] = ").append(type_weather).append(",\n");
+            sb.append("\t\t[\"modifiedTime\"] = ").append(modifiedTime).append(",\n");
+            sb.append(fog2.toString());
+            sb.append("\t\t[\"name\"] = \"").append(name).append("\",\n");
+            sb.append(fog.toString());
+            sb.append(visibility.toString());
+            sb.append("\t}, -- end of [\"weather\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Wind {
@@ -916,6 +1238,17 @@ public class Mission {
         public void setAt2000(At2000 at2000) {
             this.at2000 = at2000;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"wind\"] = \n\t\t{\n");
+            sb.append(at8000.toString());
+            sb.append(atGround.toString());
+            sb.append(at2000.toString());
+            sb.append("\t\t}, -- end of [\"wind\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class At8000 {
@@ -936,6 +1269,16 @@ public class Mission {
 
         public void setDir(int dir) {
             this.dir = dir;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t[\"at8000\"] = \n\t\t\t{\n");
+            sb.append("\t\t\t\t[\"speed\"] = ").append(speed).append(",\n");
+            sb.append("\t\t\t\t[\"dir\"] = ").append(dir).append(",\n");
+            sb.append("\t\t\t}, -- end of [\"at8000\"]\n");
+            return sb.toString();
         }
     }
 
@@ -958,6 +1301,16 @@ public class Mission {
         public void setDir(double dir) {
             this.dir = dir;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t[\"atGround\"] = \n\t\t\t{\n");
+            sb.append("\t\t\t\t[\"speed\"] = ").append(speed).append(",\n");
+            sb.append("\t\t\t\t[\"dir\"] = ").append(dir).append(",\n");
+            sb.append("\t\t\t}, -- end of [\"atGround\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class At2000 {
@@ -979,6 +1332,16 @@ public class Mission {
         public void setDir(int dir) {
             this.dir = dir;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t[\"at2000\"] = \n\t\t\t{\n");
+            sb.append("\t\t\t\t[\"speed\"] = ").append(speed).append(",\n");
+            sb.append("\t\t\t\t[\"dir\"] = ").append(dir).append(",\n");
+            sb.append("\t\t\t}, -- end of [\"at2000\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Season {
@@ -990,6 +1353,15 @@ public class Mission {
 
         public void setTemperature(int temperature) {
             this.temperature = temperature;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"season\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"temperature\"] = ").append(temperature).append(",\n");
+            sb.append("\t\t}, -- end of [\"season\"]\n");
+            return sb.toString();
         }
     }
 
@@ -1039,6 +1411,19 @@ public class Mission {
         public void setIprecptns(int iprecptns) {
             this.iprecptns = iprecptns;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"clouds\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"thickness\"] = ").append(thickness).append(",\n");
+            sb.append("\t\t\t[\"density\"] = ").append(density).append(",\n");
+            sb.append("\t\t\t[\"preset\"] = \"").append(preset).append("\",\n");
+            sb.append("\t\t\t[\"base\"] = ").append(base).append(",\n");
+            sb.append("\t\t\t[\"iprecptns\"] = ").append(iprecptns).append(",\n");
+            sb.append("\t\t}, -- end of [\"clouds\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Halo {
@@ -1051,6 +1436,15 @@ public class Mission {
         public void setPreset(String preset) {
             this.preset = preset;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"halo\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"preset\"] = \"").append(preset).append("\",\n");
+            sb.append("\t\t}, -- end of [\"halo\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Fog2 {
@@ -1062,6 +1456,15 @@ public class Mission {
 
         public void setMode(int mode) {
             this.mode = mode;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"fog2\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"mode\"] = ").append(mode).append(",\n");
+            sb.append("\t\t}, -- end of [\"fog2\"]\n");
+            return sb.toString();
         }
     }
 
@@ -1084,6 +1487,16 @@ public class Mission {
         public void setVisibility(int visibility) {
             this.visibility = visibility;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"fog\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"thickness\"] = ").append(thickness).append(",\n");
+            sb.append("\t\t\t[\"visibility\"] = ").append(visibility).append(",\n");
+            sb.append("\t\t}, -- end of [\"fog\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Visibility {
@@ -1096,6 +1509,15 @@ public class Mission {
         public void setDistance(int distance) {
             this.distance = distance;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"visibility\"] = \n\t\t{\n");
+            sb.append("\t\t\t[\"distance\"] = ").append(distance).append(",\n");
+            sb.append("\t\t}, -- end of [\"visibility\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Triggers {
@@ -1107,6 +1529,21 @@ public class Mission {
 
         public void setZones(List<Zone> zones) {
             this.zones = zones;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"triggers\"] = \n\t{\n");
+            sb.append("\t\t[\"zones\"] = \n\t\t{\n");
+            for (int i = 0; i < zones.size(); i++) {
+                sb.append("\t\t\t[").append(i + 1).append("] = \n\t\t\t{\n");
+                sb.append(zones.get(i).toString());
+                sb.append("\t\t\t}, -- end of [").append(i + 1).append("]\n");
+            }
+            sb.append("\t\t}, -- end of [\"zones\"]\n");
+            sb.append("\t}, -- end of [\"triggers\"]\n");
+            return sb.toString();
         }
     }
 
@@ -1210,6 +1647,23 @@ public class Mission {
         public void setType(int type) {
             this.type = type;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"radius\"] = ").append(radius).append(",\n");
+            sb.append("\t\t\t\t[\"zoneId\"] = ").append(zoneId).append(",\n");
+            sb.append(color.toString());
+            sb.append("\t\t\t\t[\"properties\"] = {},\n");
+            sb.append("\t\t\t\t[\"hidden\"] = ").append(hidden).append(",\n");
+            sb.append("\t\t\t\t[\"y\"] = ").append(y).append(",\n");
+            sb.append("\t\t\t\t[\"x\"] = ").append(x).append(",\n");
+            sb.append("\t\t\t\t[\"name\"] = \"").append(name).append("\",\n");
+            sb.append("\t\t\t\t[\"heading\"] = ").append(heading).append(",\n");
+            sb.append("\t\t\t\t[\"linkUnit\"] = ").append(linkUnit).append(",\n");
+            sb.append("\t\t\t\t[\"type\"] = ").append(type).append(",\n");
+            return sb.toString();
+        }
     }
 
     public static class Color {
@@ -1249,6 +1703,18 @@ public class Mission {
         public void setA(double a) {
             this.a = a;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"color\"] = \n\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t[\"r\"] = ").append(r).append(",\n");
+            sb.append("\t\t\t\t\t[\"g\"] = ").append(g).append(",\n");
+            sb.append("\t\t\t\t\t[\"b\"] = ").append(b).append(",\n");
+            sb.append("\t\t\t\t\t[\"a\"] = ").append(a).append(",\n");
+            sb.append("\t\t\t\t}, -- end of [\"color\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Map {
@@ -1278,6 +1744,17 @@ public class Mission {
 
         public void setCenterX(double centerX) {
             this.centerX = centerX;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"map\"] = \n\t{\n");
+            sb.append("\t\t[\"centerY\"] = ").append(centerY).append(",\n");
+            sb.append("\t\t[\"zoom\"] = ").append(zoom).append(",\n");
+            sb.append("\t\t[\"centerX\"] = ").append(centerX).append(",\n");
+            sb.append("\t}, -- end of [\"map\"]\n");
+            return sb.toString();
         }
     }
 
@@ -1309,6 +1786,17 @@ public class Mission {
         public void setRed(List<Integer> red) {
             this.red = red;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"coalitions\"] = \n\t{\n");
+            sb.append("\t\t[\"blue\"] = {},\n");
+            sb.append("\t\t[\"neutrals\"] = {},\n");
+            sb.append("\t\t[\"red\"] = {},\n");
+            sb.append("\t}, -- end of [\"coalitions\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Goals {
@@ -1320,6 +1808,15 @@ public class Mission {
 
         public void setGoals(List<String> goals) {
             this.goals = goals;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"goals\"] = \n\t{\n");
+            sb.append("\t\t[\"goals\"] = {},\n");
+            sb.append("\t}, -- end of [\"goals\"]\n");
+            return sb.toString();
         }
     }
 
@@ -1341,6 +1838,16 @@ public class Mission {
 
         public void setBlue(Blue blue) {
             this.blue = blue;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t[\"coalition\"] = \n\t{\n");
+            sb.append(neutrals.toString());
+            sb.append(blue.toString());
+            sb.append("\t}, -- end of [\"coalition\"]\n");
+            return sb.toString();
         }
     }
 
@@ -1381,6 +1888,18 @@ public class Mission {
         public void setCountry(List<String> country) {
             this.country = country;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"neutrals\"] = \n\t\t{\n");
+            sb.append(bullseye.toString());
+            sb.append("\t\t\t[\"nav_points\"] = {},\n");
+            sb.append("\t\t\t[\"name\"] = \"").append(name).append("\",\n");
+            sb.append("\t\t\t[\"country\"] = {},\n");
+            sb.append("\t\t}, -- end of [\"neutrals\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Bullseye {
@@ -1401,6 +1920,16 @@ public class Mission {
 
         public void setX(double x) {
             this.x = x;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t[\"bullseye\"] = \n\t\t\t{\n");
+            sb.append("\t\t\t\t[\"y\"] = ").append(y).append(",\n");
+            sb.append("\t\t\t\t[\"x\"] = ").append(x).append(",\n");
+            sb.append("\t\t\t}, -- end of [\"bullseye\"]\n");
+            return sb.toString();
         }
     }
 
@@ -1440,6 +1969,18 @@ public class Mission {
 
         public void setCountry(List<Country> country) {
             this.country = country;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t[\"blue\"] = \n\t\t{\n");
+            sb.append(bullseye.toString());
+            sb.append("\t\t\t[\"nav_points\"] = {},\n");
+            sb.append("\t\t\t[\"name\"] = \"").append(name).append("\",\n");
+            sb.append("\t\t\t[\"country\"] = {},\n");
+            sb.append("\t\t}, -- end of [\"blue\"]\n");
+            return sb.toString();
         }
     }
 
@@ -1498,6 +2039,18 @@ public class Mission {
         public void setPlane(Plane plane) {
             this.plane = plane;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"helicopter\"] = {},\n");
+            sb.append("\t\t\t\t[\"name\"] = \"").append(name).append("\",\n");
+            sb.append("\t\t\t\t[\"ship\"] = {},\n");
+            sb.append("\t\t\t\t[\"id\"] = ").append(id).append(",\n");
+            sb.append("\t\t\t\t[\"vehicle\"] = {},\n");
+            sb.append("\t\t\t\t[\"plane\"] = {},\n");
+            return sb.toString();
+        }
     }
 
     public static class Helicopter {
@@ -1509,6 +2062,13 @@ public class Mission {
 
         public void setGroup(List<Group> group) {
             this.group = group;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t[\"group\"] = {},\n");
+            return sb.toString();
         }
     }
 
@@ -1657,6 +2217,28 @@ public class Mission {
         public void setFrequency(double frequency) {
             this.frequency = frequency;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t[\"modulation\"] = ").append(modulation).append(",\n");
+            sb.append("\t\t\t\t\t[\"tasks\"] = {},\n");
+            sb.append("\t\t\t\t\t[\"radioSet\"] = ").append(radioSet).append(",\n");
+            sb.append("\t\t\t\t\t[\"task\"] = \"").append(task).append("\",\n");
+            sb.append("\t\t\t\t\t[\"uncontrolled\"] = ").append(uncontrolled).append(",\n");
+            sb.append(route.toString());
+            sb.append("\t\t\t\t\t[\"groupId\"] = ").append(groupId).append(",\n");
+            sb.append("\t\t\t\t\t[\"hidden\"] = ").append(hidden).append(",\n");
+            sb.append("\t\t\t\t\t[\"units\"] = {},\n");
+            sb.append("\t\t\t\t\t[\"y\"] = ").append(y).append(",\n");
+            sb.append("\t\t\t\t\t[\"x\"] = ").append(x).append(",\n");
+            sb.append("\t\t\t\t\t[\"name\"] = \"").append(name).append("\",\n");
+            sb.append("\t\t\t\t\t[\"communication\"] = ").append(communication).append(",\n");
+            sb.append("\t\t\t\t\t[\"start_time\"] = ").append(start_time).append(",\n");
+            sb.append("\t\t\t\t\t[\"uncontrollable\"] = ").append(uncontrollable).append(",\n");
+            sb.append("\t\t\t\t\t[\"frequency\"] = ").append(frequency).append(",\n");
+            return sb.toString();
+        }
     }
 
     public static class Route {
@@ -1668,6 +2250,13 @@ public class Mission {
 
         public void setPoints(List<Point> points) {
             this.points = points;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t\t[\"points\"] = {},\n");
+            return sb.toString();
         }
     }
 
@@ -1780,6 +2369,24 @@ public class Mission {
         public void setFormation_template(String formation_template) {
             this.formation_template = formation_template;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t\t\t[\"alt\"] = ").append(alt).append(",\n");
+            sb.append("\t\t\t\t\t\t\t[\"action\"] = \"").append(action).append("\",\n");
+            sb.append("\t\t\t\t\t\t\t[\"alt_type\"] = \"").append(alt_type).append("\",\n");
+            sb.append("\t\t\t\t\t\t\t[\"speed\"] = ").append(speed).append(",\n");
+            sb.append(task.toString());
+            sb.append("\t\t\t\t\t\t\t[\"type\"] = \"").append(type).append("\",\n");
+            sb.append("\t\t\t\t\t\t\t[\"ETA\"] = ").append(ETA).append(",\n");
+            sb.append("\t\t\t\t\t\t\t[\"ETA_locked\"] = ").append(ETA_locked).append(",\n");
+            sb.append("\t\t\t\t\t\t\t[\"y\"] = ").append(y).append(",\n");
+            sb.append("\t\t\t\t\t\t\t[\"x\"] = ").append(x).append(",\n");
+            sb.append("\t\t\t\t\t\t\t[\"speed_locked\"] = ").append(speed_locked).append(",\n");
+            sb.append("\t\t\t\t\t\t\t[\"formation_template\"] = \"").append(formation_template).append("\",\n");
+            return sb.toString();
+        }
     }
 
     public static class Task {
@@ -1801,6 +2408,14 @@ public class Mission {
         public void setParams(Params params) {
             this.params = params;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t\t\t\t[\"id\"] = \"").append(id).append("\",\n");
+            sb.append(params.toString());
+            return sb.toString();
+        }
     }
 
     public static class Params {
@@ -1812,6 +2427,13 @@ public class Mission {
 
         public void setTasks(List<String> tasks) {
             this.tasks = tasks;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t\t\t\t\t[\"tasks\"] = {},\n");
+            return sb.toString();
         }
     }
 
@@ -2005,6 +2627,33 @@ public class Mission {
         public void setCallsign(Callsign callsign) {
             this.callsign = callsign;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t[\"alt\"] = ").append(alt).append(",\n");
+            sb.append("\t\t\t\t\t[\"hardpoint_racks\"] = ").append(hardpoint_racks).append(",\n");
+            sb.append("\t\t\t\t\t[\"alt_type\"] = \"").append(alt_type).append("\",\n");
+            sb.append("\t\t\t\t\t[\"livery_id\"] = \"").append(livery_id).append("\",\n");
+            sb.append("\t\t\t\t\t[\"skill\"] = \"").append(skill).append("\",\n");
+            sb.append("\t\t\t\t\t[\"parking\"] = \"").append(parking).append("\",\n");
+            sb.append("\t\t\t\t\t[\"ropeLength\"] = ").append(ropeLength).append(",\n");
+            sb.append("\t\t\t\t\t[\"speed\"] = ").append(speed).append(",\n");
+            sb.append(AddPropAircraft.toString());
+            sb.append("\t\t\t\t\t[\"type\"] = \"").append(type).append("\",\n");
+            sb.append(Radio.toString());
+            sb.append("\t\t\t\t\t[\"unitId\"] = ").append(unitId).append(",\n");
+            sb.append("\t\t\t\t\t[\"psi\"] = ").append(psi).append(",\n");
+            sb.append("\t\t\t\t\t[\"onboard_num\"] = \"").append(onboard_num).append("\",\n");
+            sb.append("\t\t\t\t\t[\"parking_id\"] = \"").append(parking_id).append("\",\n");
+            sb.append("\t\t\t\t\t[\"x\"] = ").append(x).append(",\n");
+            sb.append("\t\t\t\t\t[\"name\"] = \"").append(name).append("\",\n");
+            sb.append(payload.toString());
+            sb.append("\t\t\t\t\t[\"y\"] = ").append(y).append(",\n");
+            sb.append("\t\t\t\t\t[\"heading\"] = ").append(heading).append(",\n");
+            sb.append(callsign.toString());
+            return sb.toString();
+        }
     }
 
     public static class AddPropAircraft {
@@ -2053,6 +2702,19 @@ public class Mission {
         public void setEngineResource(int engineResource) {
             EngineResource = engineResource;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t[\"AddPropAircraft\"] = \n\t\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t\t[\"SoloFlight\"] = ").append(SoloFlight).append(",\n");
+            sb.append("\t\t\t\t\t\t[\"ExhaustScreen\"] = ").append(ExhaustScreen).append(",\n");
+            sb.append("\t\t\t\t\t\t[\"GunnersAISkill\"] = ").append(GunnersAISkill).append(",\n");
+            sb.append("\t\t\t\t\t\t[\"NetCrewControlPriority\"] = ").append(NetCrewControlPriority).append(",\n");
+            sb.append("\t\t\t\t\t\t[\"EngineResource\"] = ").append(EngineResource).append(",\n");
+            sb.append("\t\t\t\t\t}, -- end of [\"AddPropAircraft\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Radio {
@@ -2064,6 +2726,15 @@ public class Mission {
 
         public void setChannels(List<Channel> channels) {
             this.channels = channels;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t[\"Radio\"] = \n\t\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t\t[\"channels\"] = {},\n");
+            sb.append("\t\t\t\t\t}, -- end of [\"Radio\"]\n");
+            return sb.toString();
         }
     }
 
@@ -2094,6 +2765,15 @@ public class Mission {
 
         public void setChannelsNames(List<String> channelsNames) {
             this.channelsNames = channelsNames;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t\t[\"channels\"] = {},\n");
+            sb.append("\t\t\t\t\t\t[\"modulations\"] = {},\n");
+            sb.append("\t\t\t\t\t\t[\"channelsNames\"] = {},\n");
+            return sb.toString();
         }
     }
 
@@ -2143,6 +2823,19 @@ public class Mission {
         public void setGun(int gun) {
             this.gun = gun;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t[\"payload\"] = \n\t\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t\t[\"pylons\"] = {},\n");
+            sb.append("\t\t\t\t\t\t[\"fuel\"] = \"").append(fuel).append("\",\n");
+            sb.append("\t\t\t\t\t\t[\"flare\"] = ").append(flare).append(",\n");
+            sb.append("\t\t\t\t\t\t[\"chaff\"] = ").append(chaff).append(",\n");
+            sb.append("\t\t\t\t\t\t[\"gun\"] = ").append(gun).append(",\n");
+            sb.append("\t\t\t\t\t}, -- end of [\"payload\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Pylon {
@@ -2154,6 +2847,13 @@ public class Mission {
 
         public void setCLSID(String CLSID) {
             this.CLSID = CLSID;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t\t[\"CLSID\"] = \"").append(CLSID).append("\",\n");
+            return sb.toString();
         }
     }
 
@@ -2176,6 +2876,16 @@ public class Mission {
         public void setName(String name) {
             this.name = name;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t\t[\"callsign\"] = \n\t\t\t\t\t{\n");
+            sb.append("\t\t\t\t\t\t[\"callsign\"] = {},\n");
+            sb.append("\t\t\t\t\t\t[\"name\"] = \"").append(name).append("\",\n");
+            sb.append("\t\t\t\t\t}, -- end of [\"callsign\"]\n");
+            return sb.toString();
+        }
     }
 
     public static class Ship {
@@ -2187,6 +2897,13 @@ public class Mission {
 
         public void setGroup(List<Group> group) {
             this.group = group;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"group\"] = {},\n");
+            return sb.toString();
         }
     }
 
@@ -2200,6 +2917,13 @@ public class Mission {
         public void setGroup(List<Group> group) {
             this.group = group;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"group\"] = {},\n");
+            return sb.toString();
+        }
     }
 
     public static class Plane {
@@ -2211,6 +2935,13 @@ public class Mission {
 
         public void setGroup(List<Group> group) {
             this.group = group;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\t\t\t\t[\"group\"] = {},\n");
+            return sb.toString();
         }
     }
 }
